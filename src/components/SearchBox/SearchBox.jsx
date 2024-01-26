@@ -7,10 +7,13 @@ export const SearchBox = () => {
     setInputValue(evt.target.value);
   };
 
+  console.log(inputValue);
+
   return (
     <div>
       <label className={css.label}>Find contacts by name </label>
       <input
+        placeholder="Search by name"
         type="text"
         value={inputValue}
         onChange={handleChange}
