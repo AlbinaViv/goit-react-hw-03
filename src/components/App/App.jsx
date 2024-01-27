@@ -1,30 +1,41 @@
 import { ContactForm } from "../ContactForm/ContactForm";
 import { ContactList } from "../ContactList/ContactList";
 import { SearchBox } from "../SearchBox/SearchBox";
-import contact from "/src/contact.json";
+// import contact from "/src/contact.json";
 
 export const App = () => {
+  const Contacts = [
+    { id: "id-1", name: "Rosie Simpson", number: "459-12-56" },
+    { id: "id-2", name: "Hermione Kline", number: "443-89-12" },
+    { id: "id-3", name: "Eden Clements", number: "645-17-79" },
+    { id: "id-4", name: "Annie Copeland", number: "227-91-26" },
+  ];
+  // const [inputValue, setInputValue] = useState("");
+
+  // const [contacts, setContacts] = userState([
+  //   { id: "id-1", name: "Rosie Simpson", number: "459-12-56" },
+  //   { id: "id-2", name: "Hermione Kline", number: "443-89-12" },
+  //   { id: "id-3", name: "Eden Clements", number: "645-17-79" },
+  //   { id: "id-4", name: "Annie Copeland", number: "227-91-26" },
+  // ]);
+
+  // const filteredContacts = contacts.filter((contacts) =>
+  //   contacts.name.toLowerCase().includes(inputValue.toLowerCase())
+  // );
+  // console.log(filteredContacts);
+
   const ContactUser = (name) => {
     console.log(name);
   };
 
-  // const [inputValue, setInputValue] = useState("");
-
   const SearchUser = (value) => {};
-
-  // const filteredContacts = contacts.filter((contact) =>
-  //   contact.name.toLowerCase().includes(filter.toLowerCase())
-  // );
 
   return (
     <div>
       <h1>Phonebook</h1>
-      {/* <ContactForm onSubmit={ContactUser} /> */}
-      <SearchBox
-        value={inputValue}
-        // setInputValue={setInputValue}
-      />
-      <ContactList contact={contact} />
+      <ContactForm />
+      <SearchBox />
+      <ContactList contact={Contacts} />
     </div>
   );
 };

@@ -1,57 +1,87 @@
+import { Field, Form, Formik, ErrorMessage } from "formik";
+import * as Yup from "yup";
 import { useId } from "react";
+
 import css from "./ContactForm.module.css";
 
-export const ContactForm = ({ onSubmit }) => {
+const userSchema = Yup.object().shape({
+  name: Yup.string()
+    .min(3, "Too short!")
+    .max(50, "Too long!")
+    .required("required"),
+  number: Yup.number()
+    .min(3, "Too short!")
+    .default(50, "Too long!")
+    .required("required"),
+});
+
+export const ContactForm = ({ onAdd }) => {
   const usernameFildeId = useId();
   const userphoneFildeId = useId();
 
-  const handleSubmit = (evt) => {
-    evt.preventDefault();
+  // const handleSubmit = (evt) => {
+  //   evt.preventDefault();
 
-    const form = evt.target;
-    const { name, phone } = form.elements;
+  //   const form = evt.target;
+  //   const { name, number } = form.elements;
 
-    onSubmit({
-      name: name.value,
-      phone: phone.value,
-    });
+  //   onSubmit({
+  //     name: name.value,
+  //     number: number.value,
+  //   });
 
-    // Посилання на DOM-елементи
-    // console.log(phone або  name);
+  // Посилання на DOM-елементи
+  // console.log(number або  name);
 
-    // Значення полів
-    // console.log(form.elements.name.value);
-    // console.log(form.elements.phone.value);
+  // Значення полів
+  // console.log(form.elements.name.value);
+  // console.log(form.elements.number.value);
 
-    // Скидаємо значення полів після відправки
-    form.reset();
-  };
+  // Скидаємо значення полів після відправки
+  // form.reset();
+  // };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <label
-        className={css.label}
-        htmlFor={usernameFildeId}
-      >
-        Name
-      </label>
-      <input
-        type="text"
-        name="name"
-        id={usernameFildeId}
-      />
-      <label
-        className={css.label}
-        htmlFor={userphoneFildeId}
-      >
-        Number
-      </label>
-      <input
-        type="tel"
-        name="phone"
-        id={userphoneFildeId}
-      />
-      <button type="submit">Add contact</button>
-    </form>
+    <Formik
+      initialValues={{
+        name: "",
+        number: "",
+      }}
+      validationSchema={userSchema}
+      onSubmit={(values, actions) => {
+        console.log(values);
+        // onAdd({ id: Date.now(), ...values });
+        actions.resetForm();
+      }}
+    >
+      <Form className={css.form}>
+        <label
+          className={css.label}
+          htmlFor={usernameFildeId}
+        >
+          Name
+        </label>
+        <Field
+          type="text"
+          name="name"
+          id={usernameFildeId}
+        />
+        <ErrorMessage name="name" />
+        <label
+          className={css.label}
+          htmlFor={userphoneFildeId}
+        >
+          Number
+        </label>
+        <Field
+          type="tel"
+          name="number"
+          id={userphoneFildeId}
+        />
+        <ErrorMessage name="number" />
+
+        <button type="submit">Add contact</button>
+      </Form>
+    </Formik>
   );
 };
