@@ -8,11 +8,11 @@ const userSchema = Yup.object().shape({
   name: Yup.string()
     .min(3, "Too short!")
     .max(50, "Too long!")
-    .required("required"),
+    .required("Required"),
   number: Yup.number()
     .min(3, "Too short!")
-    .default(50, "Too long!")
-    .required("required"),
+    .max(50, "Too long!")
+    .required("Required"),
 });
 
 export const ContactForm = ({ onAdd }) => {
@@ -62,11 +62,16 @@ export const ContactForm = ({ onAdd }) => {
           Name
         </label>
         <Field
+          className={css.field}
           type="text"
           name="name"
           id={usernameFildeId}
         />
-        <ErrorMessage name="name" />
+        <ErrorMessage
+          className={css.error}
+          name="name"
+          component="span"
+        />
         <label
           className={css.label}
           htmlFor={userphoneFildeId}
@@ -74,11 +79,16 @@ export const ContactForm = ({ onAdd }) => {
           Number
         </label>
         <Field
+          className={css.field}
           type="tel"
           name="number"
           id={userphoneFildeId}
         />
-        <ErrorMessage name="number" />
+        <ErrorMessage
+          className={css.error}
+          name="number"
+          component="span"
+        />
 
         <button type="submit">Add contact</button>
       </Form>
