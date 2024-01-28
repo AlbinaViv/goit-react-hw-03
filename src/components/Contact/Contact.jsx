@@ -2,7 +2,7 @@ import css from "./Contact.module.css";
 import { CgGirl } from "react-icons/cg";
 import { BsFillTelephoneFill } from "react-icons/bs";
 
-export const Contact = ({ name, number }) => {
+export const Contact = ({ name, number, onDelete, id }) => {
   return (
     <>
       <p>
@@ -12,7 +12,12 @@ export const Contact = ({ name, number }) => {
         <BsFillTelephoneFill />
         {number}
       </p>
-      <button type="button">Delete</button>
+      <button
+        onClick={() => onDelete(id)}
+        type="button"
+      >
+        Delete
+      </button>
     </>
   );
 };

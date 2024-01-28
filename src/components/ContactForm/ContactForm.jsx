@@ -50,7 +50,7 @@ export const ContactForm = ({ onAdd }) => {
       validationSchema={userSchema}
       onSubmit={(values, actions) => {
         console.log(values);
-        // onAdd({ id: Date.now(), ...values });
+        onAdd({ id: Date.now(), ...values });
         actions.resetForm();
       }}
     >

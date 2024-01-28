@@ -16,20 +16,45 @@ export const App = () => {
   const filteredContacts = contacts.filter((contacts) =>
     contacts.name.toLowerCase().includes(inputValue.toLowerCase())
   );
-  console.log(filteredContacts);
 
-  const ContactUser = (name) => {
-    console.log(name);
+  const deleteContacts = (contactId) => {
+    // console.log(contactId);
+
+    setContacts((prevContacts) => {
+      return prevContacts.filter((contact) => contact.id !== contactId);
+    });
   };
 
-  const SearchUser = (value) => {};
+  const addContact = (newContact) => {
+    // console.log(newContact);
+
+    setContacts((prevContacts) => {
+      return [
+        ...prevContacts,
+        {
+          name: newContact,
+          id: Date.now(),
+        },
+      ];
+    });
+  };
+
+  // const SearchUser = (value) => {};
 
   return (
     <div>
       <h1>Phonebook</h1>
-      <ContactForm />
-      <SearchBox />
-      <ContactList contacts={contacts} />
+      <ContactForm onAdd={addContact} />
+
+      <SearchBox
+        value={inputValue}
+        onChange={setInputValue}
+      />
+
+      <ContactList
+        contacts={filteredContacts}
+        onDelete={deleteContacts}
+      />
     </div>
   );
 };
