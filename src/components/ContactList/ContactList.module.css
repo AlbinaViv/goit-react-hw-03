@@ -1,0 +1,14 @@
+.contact {
+  display: flex;
+  flex-direction: column;
+  width: 150px;
+  height: 100%;
+  padding: 20px;
+  margin: 18px;
+  border-radius: 5px;
+  background-color: grey;
+}
+.contactList {
+  display: flex;
+  flex-direction: row;
+}

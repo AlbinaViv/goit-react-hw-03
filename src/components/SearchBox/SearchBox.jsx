@@ -10,10 +10,10 @@ export const SearchBox = () => {
   // console.log(inputValue);
 
   return (
-    <div>
+    <div className={css.wrap}>
       <label className={css.label}>Find contacts by name </label>
       <input
-        // placeholder="Search by name"
+        className={css.input}
         type="text"
         value={inputValue}
         onChange={handleChange}
