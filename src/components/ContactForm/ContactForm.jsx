@@ -9,7 +9,7 @@ const userSchema = Yup.object().shape({
     .min(3, "Too short!")
     .max(50, "Too long!")
     .required("Required"),
-  number: Yup.number()
+  number: Yup.string()
     .min(3, "Too short!")
     .max(50, "Too long!")
     .required("Required"),
@@ -49,8 +49,10 @@ export const ContactForm = ({ onAdd }) => {
       }}
       validationSchema={userSchema}
       onSubmit={(values, actions) => {
-        console.log(values);
-        onAdd({ id: Date.now(), ...values });
+        // const updedvalues = { ...values, number: Number(values.number) };
+        // onAdd({ id: Date.now(), ...updedvalues });
+        onAdd({ ...values });
+
         actions.resetForm();
       }}
     >

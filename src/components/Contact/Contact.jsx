@@ -2,22 +2,23 @@ import css from "./Contact.module.css";
 import { CgGirl } from "react-icons/cg";
 import { BsFillTelephoneFill } from "react-icons/bs";
 
-export const Contact = ({ name, number, onDelete, id }) => {
+export const Contact = ({ name, number, deleteHandler, id }) => {
   return (
-    <>
-      <p>
-        <CgGirl /> {name}
+    <li className={css.contact}>
+      <p className={css.content}>
+        <CgGirl />
+        {name}
       </p>
-      <p>
+      <p className={css.content}>
         <BsFillTelephoneFill />
         {number}
       </p>
       <button
-        onClick={() => onDelete(id)}
+        onClick={() => deleteHandler(id)}
         type="button"
       >
         Delete
       </button>
-    </>
+    </li>
   );
 };
